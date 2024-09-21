@@ -1,0 +1,10 @@
+root = None
+selected_item = None
+selected_item_telas = None
+movimiento_menu = None
+Ingresos = None
+Ingresos_telas = None
+entries = {}
+entries_telas = {}
+tree = None
+tree_telas = None

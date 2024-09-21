@@ -1,0 +1,37 @@
+linea 35 => def poblar_treeview(tree, datos, columns) esta funcion no se esta usando
+
+la funcion on_click del dashboard solo se utiliza alli, y el nombre no te dice nada, por eso lo cambié
+
+Se organizo de la siguiente manera:
+
+cada seccion a tratar en la app, la vamos a tratar como un modulo unico y diferente.
+De esta forma es mejor gestionar toda la app.
+
+main se encarga de levantar la app y de generar un root unico para pasar por toda la app
+globals contiene todas las variables globales
+routes contiene las rutas, pero ahora se generan segun el path propio del proyecto
+dashboard se encarga de proporcionar la funcion para la generacion del mismo e invocarla donde se necesite
+utils contiene funciones que se utilizan en todos los modulos
+
+lueego la carpeta database tiene tods los txt que tenemos que utilizar
+
+y la carpeta modules, tiene como comente arriba cada una de las seeciiones de la app. 
+Separados en 2 ficheros. el views.py que contendra lo que se renderiza en pantalla
+y el actions.py que tendrá todas las funciones que se utilizan en el propio views, o tal vez se comparten con otros modules
+
+Te deje el modulo de SALES, para que lo refactorizes desde el fichero restantePorRefactorizar.py
+OJO con el globals, si haces from globals import tree por ej. 
+y en una funcion quieres asignarle un nuevo valor, tedras que usar global tree dentro de la funcion tambien aparte del import.
+Definir funciones dentro de funciones no esta bueno, es mejor extraer todo fuera, y luego invocarla dentro de otra funcion,.
+
+La función de que persista el dato y no se machaque  siempre con uno nuevo es cambiando
+la "w" por "a", el metodo w, justamente escribe siempre por encima de todo, en cambio el 'a' es anexado y lo que hace es insertar uno nuevo
+def guardar_datos(ruta, datos):
+    with open(ruta, 'w') as archivo: =>  with open(ruta, 'a') as archivo:
+        archivo.write(datos)
+
+Se agrego una nueva funcion para hacer el load de los items, y veras un header=None para la carga de los datos en el actions del database, es para que se carge solo eso sin usar los headers
+
+
+Luego como vista general, te recomiendo controlar los formularios, osea que se bloqueen si no se llenan todos los input, osea que todos sean requeridos o los que tu quieras.
+
